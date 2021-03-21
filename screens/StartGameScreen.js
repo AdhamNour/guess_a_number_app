@@ -40,6 +40,16 @@ const styles = StyleSheet.create({
         width:300,
         maxWidth:'80%',
         alignItems: 'center',
+        shadowColor:'black',
+        shadowOffset :{
+            width:0,
+            height:0
+        },
+        shadowOpacity:0.26,
+        backgroundColor:'white',
+        elevation:8,
+        padding:20,
+        borderRadius:10
     }
 })
 
