@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
 } from "react-native";
 
 import Card from "../components/Card";
@@ -14,9 +14,31 @@ import Colors from "../constants/colors";
 
 const StartGameScreen = () => {
   const [enteredNumber, setEnteredNumber] = useState("");
-  let numberInputHandler = (inputText) => {
+  const [Confirmed, setConfirmed] = useState(false);
+  const [selectedNumber, setselectedNumber] = useState();
+  const numberInputHandler = (inputText) => {
     setEnteredNumber(inputText.replace(/[^0-9]/g, ""));
   };
+  const resetInputHandler = () => {
+    setEnteredNumber("");
+    setConfirmed(false);
+  };
+  const confirmInputHandler = () => {
+    const chosenNumber = parseInt(enteredNumber);
+    if(chosenNumber === NaN || chosenNumber <= 0){
+        console.log("the chosen number is not applicable");
+        return;
+    }
+    setConfirmed(true);
+    setselectedNumber(chosenNumber);
+    setEnteredNumber('');
+  }
+
+  let confirmedOutput ;
+  if(Confirmed){
+      confirmedOutput = <Text>Chosen Number {selectedNumber}</Text>
+  }
+
   return (
     <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={styles.screen}>
@@ -36,20 +58,22 @@ const StartGameScreen = () => {
             <View style={styles.button}>
               <Button
                 title="Reset"
-                onPress={() => {}}
+                onPress={resetInputHandler}
                 color={Colors.accentColor}
               />
             </View>
             <View style={styles.button}>
               <Button
                 title="Confirm"
-                onPress={() => {}}
+                onPress={confirmInputHandler}
                 color={Colors.primaryColor}
               />
             </View>
           </View>
         </Card>
+        {confirmedOutput}
       </View>
+
     </TouchableWithoutFeedback>
   );
 };
