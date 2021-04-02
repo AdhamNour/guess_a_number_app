@@ -10,7 +10,7 @@ export default function App() {
   const [selectedNumber, setselectedNumber] = useState();
   let content = <StartGameScreen onStartGame={setselectedNumber} />;
   if (selectedNumber) {
-    content = <GameScreen />;
+    content = <GameScreen selectedNumber={selectedNumber} />;
   }
   return (
     <View style={styles.screenView}>
