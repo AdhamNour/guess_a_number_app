@@ -1,26 +1,53 @@
 import { StatusBar } from "expo-status-bar";
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import StartGameScreen from "./screens/StartGameScreen";
 import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
-
 import Header from "./components/Header";
+
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+const fetchFonts = () => {
+  return Font.loadAsync({
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
+  });
+};
 
 export default function App() {
   const [selectedNumber, setselectedNumber] = useState();
-  const [roundCount,setRoundCount] = useState(0);
+  const [roundCount, setRoundCount] = useState(0);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  if (!dataLoaded) {
+    return (
+      <AppLoading
+        startAsync={fetchFonts}
+        onFinish={() => {
+          setDataLoaded(true);
+        }}
+        onError={(err) => {console.log(err)}}
+      />
+    );
+  }
+
   const reset = () => {
     setselectedNumber(null);
-    setRoundCount(0)
-  }
+    setRoundCount(0);
+  };
 
   let content = <StartGameScreen onStartGame={setselectedNumber} />;
   if (selectedNumber) {
-    content = <GameScreen selectedNumber={selectedNumber} gameOverHandler={setRoundCount} />;
+    content = (
+      <GameScreen
+        selectedNumber={selectedNumber}
+        gameOverHandler={setRoundCount}
+      />
+    );
   }
-  if(roundCount > 0) {
-    content = <GameOverScreen roundCount={roundCount} reset={reset} />
+  if (roundCount > 0) {
+    content = <GameOverScreen roundCount={roundCount} reset={reset} />;
   }
   return (
     <View style={styles.screenView}>
