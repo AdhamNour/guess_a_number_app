@@ -9,7 +9,7 @@ const GameOverScreen = (props) => {
       <TitleText>Game is Over</TitleText>
       <View style={styles.imageContainer}>
         <Image
-          source={require("../assets/images/success.png")}
+          source={{uri:'https://tgr.scdn2.secure.raxcdn.com/images/wysiwyg/_article/istockphoto-485966046-612x612.jpg'}}
           style={styles.image}
           resizeMode="cover"
         />
