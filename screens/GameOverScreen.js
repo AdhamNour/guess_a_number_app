@@ -12,6 +12,7 @@ const GameOverScreen = (props) => {
           source={{uri:'https://tgr.scdn2.secure.raxcdn.com/images/wysiwyg/_article/istockphoto-485966046-612x612.jpg'}}
           style={styles.image}
           resizeMode="cover"
+          fadeDuration={500}
         />
       </View>
       <Text>this is game over screen Guessed in</Text>
