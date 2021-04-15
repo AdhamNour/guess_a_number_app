@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, Button, Image } from "react-native";
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
+import MainButton from "../components/MainButton";
 
 const GameOverScreen = (props) => {
   return (
@@ -17,7 +18,7 @@ const GameOverScreen = (props) => {
       </View>
       <Text>this is game over screen Guessed in</Text>
       <Text> Guessed in {props.roundCount} rounds</Text>
-      <Button title="Reset" onPress={props.reset} />
+      <MainButton onPress={props.reset} > Reset </MainButton>
     </View>
   );
 };
