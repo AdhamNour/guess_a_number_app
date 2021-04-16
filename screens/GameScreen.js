@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Alert,
   Dimensions,
-  FlatList
+  FlatList,
+  ScrollView
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
