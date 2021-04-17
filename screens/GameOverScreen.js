@@ -7,6 +7,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
+import * as ScreenOrientation from 'expo-screen-orientation'
 
 import BodyText from "../components/BodyText";
 import TitleText from "../components/TitleText";
@@ -14,6 +15,7 @@ import MainButton from "../components/MainButton";
 import Colors from "../constants/colors";
 
 const GameOverScreen = (props) => {
+  ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT);
   return (
     <ScrollView>
       <View style={styles.screen}>
